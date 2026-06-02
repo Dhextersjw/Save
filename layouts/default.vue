@@ -11,9 +11,8 @@
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
-          :to="item.to"
-          router
-          exact
+          link
+          @click="navigate(item.to)"
         >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -92,7 +91,6 @@
 <script>
 export default {
   name: 'DefaultLayout',
-  middleware: ['auth'],
   data () {
     return {
       clipped: false,
@@ -115,17 +113,20 @@ export default {
       rightDrawer: false,
       title: 'Image Enhancer'
     }
-  },methods: {
-  async logout() {
-    
-    try {
-      await this.$auth.logout()
-      this.$router.push('/auth/login')  // redirect manually
-    } catch (err) {
-      console.error('Logout error:', err)
+  },
+  methods: {
+    navigate(path) {
+      this.drawer = false
+      this.$router.push(path)
+    },
+    async logout() {
+      try {
+        await this.$auth.logout()
+        this.$router.push('/auth/login')  // redirect manually
+      } catch (err) {
+        console.error('Logout error:', err)
+      }
     }
   }
-}
-
 }
 </script>
