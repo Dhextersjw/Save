@@ -105,16 +105,6 @@ export default {
           to: '/'
         },
         {
-          icon: 'mdi-map',
-          title: 'Map',
-          to: '/map'
-        },
-        {
-          icon: 'mdi-video',
-          title: 'Video Enhancer',
-          to: '/movie'
-        },
-        {
           icon: 'mdi-translate',
           title: 'Translator',
           to: '/translate'
